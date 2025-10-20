@@ -3,133 +3,388 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maranata Turismo — Transporte & Viagens</title>
-  <meta name="description" content="Transporte executivo e viagens para Ouro Fino/MG e região. Fretamentos, traslados e turismo com segurança e pontualidade." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Maranata Turismo - Transporte &amp; Viagens</title>
+  <meta name="description" content="Transporte executivo, fretamentos e turismo regional em Ouro Fino/MG e cidades vizinhas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --bg:#0b1220;            /* fundo escuro elegante */
-      --card:#101828cc;        /* glass */
-      --text:#e6e9f2;
-      --muted:#94a3b8;
-      --brand:#06b6d4;         /* ciano */
-      --brand-2:#22d3ee;       /* ciano claro */
-      --accent:#8b5cf6;        /* roxo */
-      --ok:#10b981;            /* verde */
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 16px;
+      --bg:#060d1d;
+      --bg-soft:#0b162c;
+      --panel:#121f36;
+      --panel-soft:#182843;
+      --text:#e8ecf6;
+      --muted:#9aa7be;
+      --brand:#0ed4f4;
+      --accent:#7c5bfa;
+      --accent-soft:rgba(124,91,250,.18);
+      --radius:18px;
+      --shadow:0 24px 48px rgba(5,9,18,.4);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{box-sizing:border-box; margin:0; padding:0}
     body{
-      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--text);
-      background: radial-gradient(1200px 800px at 10% -10%, rgba(34,211,238,.12), rgba(0,0,0,0)) ,
-                  radial-gradient(1200px 800px at 90% 0%, rgba(139,92,246,.12), rgba(0,0,0,0)) ,
-                  linear-gradient(180deg, #0b1220 0%, #0b1324 100%);
+      min-height:100vh;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(1000px 600px at -10% -10%, rgba(14,212,244,.16), transparent),
+                 radial-gradient(1200px 700px at 110% 0%, rgba(124,91,250,.18), transparent),
+                 linear-gradient(180deg,#060d1d 0%,#07112b 100%);
+      color:var(--text);
       line-height:1.6;
+      -webkit-font-smoothing:antialiased;
     }
-    a{color:var(--brand-2); text-decoration:none}
+    a{color:var(--brand); text-decoration:none}
     a:hover{opacity:.9}
 
-    /* Header */
-    .wrap{max-width:1200px; margin:0 auto; padding:0 20px}
+    .container{width:min(1200px, calc(100% - 48px)); margin:0 auto;}
+
     header{
-      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
-      background:rgba(11,19,36,.6); border-bottom:1px solid rgba(255,255,255,.06);
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(6,13,29,.82);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .h-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:14px}
-    .brand img{height:44px; width:auto; border-radius:10px}
-    .brand .title{font-weight:900; letter-spacing:.2px; font-size: clamp(18px, 3.2vw, 28px);}
-    .brand .subtitle{color:var(--muted); font-size:12px}
-    nav ul{display:flex; gap:18px; list-style:none; padding:0; margin:0}
-    nav a{color:var(--text); font-weight:600; opacity:.9}
-    nav a:hover{color:white}
-
-    /* Hero */
-    .hero{padding:64px 0 40px}
-    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:32px; align-items:center}
-    @media (max-width: 880px){.hero-grid{grid-template-columns:1fr;}}
-    .badge{display:inline-flex; gap:10px; align-items:center; padding:6px 10px; border-radius:999px;
-      background: linear-gradient(90deg, rgba(34,211,238,.14), rgba(139,92,246,.14));
-      border:1px solid rgba(255,255,255,.12); color:#e6f9ff; font-weight:600; font-size:12px}
-    .hero h1{margin:14px 0 10px; font-size: clamp(28px, 6vw, 56px); line-height:1.06; letter-spacing:-.02em}
-    .hero p{color:#c7cedd; font-size: clamp(14px, 2vw, 18px)}
-    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 18px; border-radius:12px; font-weight:700; border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow)}
-    .btn.primary{background:linear-gradient(90deg, var(--brand), var(--accent)); color:#071018}
-    .btn.ghost{background:rgba(255,255,255,.04); color:var(--text)}
-    .hero-showcase{display:flex; flex-direction:column; gap:20px; padding:26px; border-radius:24px; background:linear-gradient(160deg, rgba(34,211,238,.12), rgba(11,19,36,.5)); box-shadow:var(--shadow)}
-    .hero-media{position:relative; border-radius:20px; overflow:hidden; background:linear-gradient(120deg, rgba(34,211,238,.22), rgba(139,92,246,.18)); aspect-ratio:16/9; min-height:260px; display:flex; align-items:center; justify-content:center; gap:18px; padding:24px}
-    .hero-media::after{content:''; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);}
-    .hero-media figure{flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:12px; margin:0}
-    .hero-media img{width:100%; height:100%; max-height:220px; object-fit:contain; display:block; transition:transform .6s ease}
-    .hero-media figcaption{font-size:14px; font-weight:600; color:var(--text); background:rgba(11,19,36,.65); border-radius:999px; padding:6px 16px; border:1px solid rgba(255,255,255,.12); backdrop-filter:blur(6px)}
-    .hero-showcase:hover .hero-media img{transform:scale(1.05)}
-    .hero-tags{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
-    .hero-tags .pill{padding:12px 18px; border:1px solid rgba(255,255,255,.16); background:rgba(2,9,23,.45)}
-    @media (max-width: 880px){
-      .hero-showcase{padding:22px}
-      .hero-media{min-height:220px; aspect-ratio:auto; flex-direction:column}
-      .hero-media img{max-height:200px}
+    .header-bar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      padding:18px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    .brand img{
+      width:52px;
+      height:52px;
+      border-radius:14px;
+      object-fit:cover;
+      box-shadow:0 12px 24px rgba(0,0,0,.35);
+    }
+    .brand strong{font-size:1.5rem; letter-spacing:.01em;}
+    .brand span{display:block; color:var(--muted); font-size:.83rem; margin-top:2px;}
+    nav ul{display:flex; list-style:none; gap:22px; font-weight:600;}
+    nav a{color:var(--text);}
+    nav a:hover{color:var(--brand);}
+    @media (max-width:760px){
+      .header-bar{flex-direction:column; align-items:flex-start;}
+      nav ul{flex-wrap:wrap; gap:12px;}
     }
 
+    .section{
+      padding:clamp(64px, 10vw, 96px) 0;
+    }
+    .section h2{
+      font-size:clamp(1.9rem, 3.5vw, 2.6rem);
+      margin-bottom:12px;
+    }
+    .lead{
+      color:var(--muted);
+      max-width:640px;
+      margin-bottom:34px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+      gap:clamp(28px,6vw,48px);
+      align-items:center;
+    }
+    .hero-copy{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(90deg, rgba(14,212,244,.16), rgba(124,91,250,.16));
+      font-weight:600;
+      font-size:.8rem;
+      color:#dff6ff;
+      letter-spacing:.02em;
+    }
+    .badge::before{
+      content:"";
+      width:8px; height:8px; border-radius:50%;
+      background:linear-gradient(120deg,var(--brand),var(--accent));
+      box-shadow:0 0 12px rgba(14,212,244,.8);
+    }
+    .hero h1{
+      font-size:clamp(2.2rem, 5.4vw, 3.8rem);
+      line-height:1.08;
+      letter-spacing:-.01em;
+    }
+    .cta{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 20px;
+      border-radius:14px;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,.08);
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      color:#041020;
+      box-shadow:0 20px 38px rgba(14,212,244,.25);
+    }
+    .btn.primary:hover{transform:translateY(-2px);}
+    .btn.ghost{background:rgba(255,255,255,.05); color:var(--text);}
+
+    .hero-media{
+      background:linear-gradient(120deg, rgba(14,212,244,.14), rgba(124,91,250,.18));
+      border-radius:26px;
+      padding:32px;
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+    .hero-media figure{
+      background:rgba(7,14,28,.78);
+      border-radius:18px;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(8px);
+    }
+    .hero-media img{
+      width:100%;
+      max-height:180px;
+      object-fit:contain;
+      filter:drop-shadow(0 18px 32px rgba(0,0,0,.45));
+      transition:transform .35s ease;
+    }
+    .hero-media figure:hover img{transform:translateY(-6px) scale(1.04);}
+    .hero-media figcaption{
+      font-size:.95rem;
+      font-weight:600;
+      color:#f5f8ff;
+    }
+    .hero-tags{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .hero-tags .pill{
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      font-weight:500;
+      color:var(--muted);
+    }
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .hero-media{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+    }
+    @media (max-width:560px){
+      .hero-media{padding:24px;}
+      .hero-media{grid-template-columns:1fr;}
+    }
+
+    .services-grid,
+    .fleet-grid,
+    .contact-grid{
+      display:grid;
+      gap:22px;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding:18px; box-shadow: var(--shadow);
+      background:var(--panel);
+      border-radius:var(--radius);
+      padding:24px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 16px 36px rgba(4,10,24,.32);
     }
+    .service-card{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      min-height:210px;
+    }
+    .service-card .icon{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:rgba(14,212,244,.14);
+      border:1px solid rgba(14,212,244,.25);
+      font-size:1.2rem;
+    }
+    .service-card h3{font-size:1.05rem; margin:0;}
+    .service-card p{color:var(--muted); font-size:.95rem;}
 
-    /* Services */
-    .section{padding:56px 0}
-    .section h2{font-size: clamp(22px, 3.6vw, 34px); margin:0 0 14px}
-    .muted{color:var(--muted)}
-    .grid{display:grid; gap:18px}
-    .grid.col-3{grid-template-columns:repeat(3,1fr)}
-    .grid.col-2{grid-template-columns:repeat(2,1fr)}
-    .grid.single{grid-template-columns:minmax(280px, 420px); justify-content:center}
-    @media (max-width:900px){.grid.col-3{grid-template-columns:1fr 1fr}}
-    @media (max-width:640px){.grid.col-3{grid-template-columns:1fr}; .grid.col-2{grid-template-columns:1fr}}
+    .fleet-card{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .fleet-card img{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.1);
+      background:var(--panel-soft);
+    }
+    .fleet-card strong{font-size:1.1rem;}
+    .fleet-card span{color:var(--muted); font-size:.95rem;}
 
-    .service{display:flex; gap:14px}
-    .service .icon{width:46px; height:46px; border-radius:12px; display:grid; place-items:center; 
-      background: radial-gradient(120px 80px at 20% 30%, rgba(34,211,238,.25), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08)}
-    .service h3{margin:0 0 6px; font-size:18px}
-    .service p{margin:0; color:#bcc6d9}
+    #contato{
+      background:linear-gradient(160deg, rgba(30,42,66,.9), rgba(16,28,48,.95));
+      border-radius:32px;
+      border:1px solid rgba(255,255,255,.12);
+      padding:clamp(48px,7vw,64px);
+      position:relative;
+      overflow:hidden;
+    }
+    #contato::before,
+    #contato::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      pointer-events:none;
+      opacity:.35;
+      filter:blur(0);
+    }
+    #contato::before{
+      width:420px; height:420px;
+      top:-160px; right:-140px;
+      background:radial-gradient(circle at center, rgba(124,91,250,.55), transparent);
+    }
+    #contato::after{
+      width:360px; height:360px;
+      bottom:-180px; left:-120px;
+      background:radial-gradient(circle at center, rgba(14,212,244,.45), transparent);
+    }
+    #contato > *{position:relative; z-index:1;}
+    .contact-lead{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 22px;
+      background:linear-gradient(130deg, rgba(255,255,255,.95), rgba(215,233,255,.92));
+      color:#10223a;
+      border-radius:18px;
+      font-weight:600;
+      margin-bottom:30px;
+      box-shadow:0 20px 34px rgba(10,18,36,.28);
+    }
+    .contact-lead::before{
+      content:"";
+      width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(120deg,var(--brand),var(--accent));
+      box-shadow:0 0 0 6px rgba(14,212,244,.3);
+    }
+    .contact-card{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      background:linear-gradient(180deg, rgba(10,18,36,.85), rgba(6,12,24,.92));
+      padding:28px;
+    }
+    .info-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:11px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      font-weight:600;
+      color:#f3f6ff;
+      width:max-content;
+      max-width:100%;
+      box-shadow:0 10px 24px rgba(4,12,28,.28);
+    }
+    .phone-line{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      font-size:1.05rem;
+    }
+    .phone-line strong{font-size:1.35rem; letter-spacing:.01em;}
+    .phone-line a{color:var(--brand); font-weight:600; font-size:1rem;}
+    .phone-line .separator{
+      width:4px;
+      height:4px;
+      border-radius:50%;
+      background:rgba(255,255,255,.35);
+    }
+    .coverage{
+      color:#c7d2eb;
+      line-height:1.6;
+      margin:0;
+    }
+    form{display:grid; gap:14px;}
+    .input{
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(7,12,24,.75);
+      color:var(--text);
+    }
+    .input::placeholder{color:#95a4c2;}
+    .input:focus{outline:none; border-color:var(--brand); box-shadow:0 0 0 3px rgba(14,212,244,.25);}
 
-    /* Route banner */
-    .banner{margin-top:24px; border:1px dashed rgba(255,255,255,.12); border-radius:14px; padding:16px; text-align:center;}
-    .banner strong{color:#eafffb}
-
-    /* Fleet */
-    .grid.fleet-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-    .fleet-card{display:flex; flex-direction:column; gap:12px}
-    .fleet-img{height:200px; width:100%; border-radius:14px; object-fit:cover; background:linear-gradient(120deg, rgba(34,211,238,.18), rgba(139,92,246,.18)); border:1px solid rgba(255,255,255,.1);}
-
-    /* Contact */
-    .contact-card{display:flex; flex-direction:column; gap:14px}
-    .pill{display:inline-flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04)}
-    .pill code{background:rgba(0,0,0,.35); padding:4px 6px; border-radius:8px}
-
-    footer{padding:34px 0; color:#a3b0c5; border-top:1px solid rgba(255,255,255,.06)}
+    footer{
+      margin-top:72px;
+      padding:32px 0 48px;
+      border-top:1px solid rgba(255,255,255,.06);
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    footer .container{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:space-between;
+    }
+    footer span{white-space:nowrap;}
+    footer span:last-child{flex-basis:100%; margin-top:6px;}
+    @media (max-width:620px){
+      footer span{white-space:normal;}
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap h-inner">
+    <div class="container header-bar">
       <div class="brand">
-        <!-- TODO: troque o src pela sua logo -->
-        <img src="logo-maranata.png" alt="Logo Maranata Turismo" onerror="this.style.display='none'">
+        <img src="logo-maranata.png" alt="Logo da Maranata Turismo" onerror="this.style.display='none'">
         <div>
-          <div class="title">Maranata <span style="background:linear-gradient(90deg,var(--brand),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;">Turismo</span></div>
-          <div class="subtitle">Transporte e Viagens • Ouro Fino/MG e região</div>
+          <strong>Maranata Turismo</strong>
+          <span>Transporte &amp; Viagens em Ouro Fino/MG e regi&atilde;o</span>
         </div>
       </div>
-      <nav>
+      <nav aria-label="Menu principal">
         <ul>
-          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#servicos">Servi&ccedil;os</a></li>
           <li><a href="#frota">Frota</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
@@ -137,180 +392,164 @@
     </div>
   </header>
 
-  <main class="wrap">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-grid">
-        <div>
-          <span class="badge">Conforto • Segurança • Pontualidade</span>
-          <h1>Transporte executivo para <span style="color:var(--brand-2)">Ouro Fino/MG</span> e cidades vizinhas</h1>
-          <p>
-            Fretamento corporativo e escolar, traslados para aeroportos, viagens particulares e turismo regional. 
-            Atendimento focado em segurança, veículos revisados e motoristas experientes. 
-          </p>
-          <div class="cta">
-            <a class="btn primary" href="https://wa.me/5535997533679" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.94 11.94 0 0 0 12.06 0C5.52.03.25 5.31.28 11.85c.01 2.1.56 4.16 1.6 5.98L0 24l6.35-1.84a11.86 11.86 0 0 0 5.67 1.45h.05c6.54-.03 11.81-5.31 11.78-11.85a11.84 11.84 0 0 0-3.33-8.28Zm-8.46 18.3h-.04a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.77 1.09 1.08-3.67-.24-.38a9.9 9.9 0 0 1-1.57-5.37C2.09 6.44 6.6 1.96 12.02 1.93a9.9 9.9 0 0 1 7.07 2.94 9.88 9.88 0 0 1 2.93 7.08c.02 5.43-4.4 9.85-9.96 9.83Zm5.47-7.39c-.3-.15-1.77-.87-2.05-.97-.28-.1-.49-.15-.7.15-.2.3-.8.97-.98 1.17-.18.2-.36.22-.66.07-.3-.16-1.27-.47-2.42-1.5a9.07 9.07 0 0 1-1.66-2.06c-.17-.3 0-.46.13-.61.12-.12.3-.31.45-.47.15-.16.2-.27.3-.46.1-.19.06-.35-.02-.5-.08-.15-.7-1.68-.96-2.3-.25-.6-.51-.52-.7-.53h-.6c-.2 0-.5.07-.76.35-.26.3-1 1-1 2.45s1.02 2.84 1.16 3.03c.15.2 2 3.06 4.84 4.29.68.29 1.2.46 1.6.58.67.21 1.29.18 1.77.11.54-.08 1.77-.72 2.02-1.43.25-.7.25-1.3.17-1.43-.07-.13-.27-.21-.57-.37Z"/></svg>
-              WhatsApp agora
-            </a>
-            <a class="btn ghost" href="#contato">Ver telefones</a>
-          </div>
-          <div class="banner card">Rota destaque: <strong>Ouro Fino • Inconfidentes • Borda da Mata • Pouso Alegre • Jacutinga</strong></div>
+  <main class="container">
+    <section class="section hero" id="inicio">
+      <div class="hero-copy">
+        <span class="badge">Conforto &bull; Seguran&ccedil;a &bull; Pontualidade</span>
+        <h1>Transporte executivo para Ouro Fino/MG e cidades vizinhas</h1>
+        <p>Fretamentos corporativos e escolares, traslados para aeroportos, viagens particulares e turismo regional. Atendimento focado em seguran&ccedil;a, ve&iacute;culos revisados e motoristas experientes.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://wa.me/5535997533679" target="_blank" rel="noopener" aria-label="Iniciar conversa no WhatsApp">
+            <span>&#128172;</span>
+            WhatsApp agora
+          </a>
+          <a class="btn ghost" href="#contato">Ver telefones</a>
         </div>
-        <div class="card hero-showcase">
-          <div class="hero-media">
-            <figure>
-              <img src="van.png" alt="Van Renault Master 15 lugares">
-              <figcaption>Van Renault Master</figcaption>
-            </figure>
-            <figure>
-              <img src="kombi.png" alt="Kombi Volkswagen">
-              <figcaption>Kombi Volkswagen</figcaption>
-            </figure>
-          </div>
-          <div class="hero-tags">
-            <div class="pill">Veículos revisados</div>
-            <div class="pill">Seguro de passageiros</div>
-          </div>
+        <div class="card" style="margin-top:12px; background:rgba(9,18,36,.65);">
+          Rota destaque: <strong>Ouro Fino &bull; Inconfidentes &bull; Borda da Mata &bull; Pouso Alegre &bull; Jacutinga</strong>
+        </div>
+      </div>
+      <div>
+        <div class="hero-media">
+          <figure>
+            <img src="van.png" alt="Van executiva Renault Master">
+            <figcaption>Van Renault Master</figcaption>
+          </figure>
+          <figure>
+            <img src="kombi.png" alt="Kombi de passageiros Volkswagen">
+            <figcaption>Kombi Volkswagen</figcaption>
+          </figure>
+        </div>
+        <div class="hero-tags">
+          <div class="pill">Ve&iacute;culos revisados</div>
+          <div class="pill">Seguro de passageiros</div>
+          <div class="pill">Motoristas treinados</div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="servicos" class="section">
-      <h2>Serviços</h2>
-      <p class="muted">Atendemos Ouro Fino/MG e região com soluções sob medida para empresa, escola e família.</p>
-      <div class="grid col-3">
-        <div class="card service">
-          <div class="icon">🚐</div>
+    <section class="section" id="servicos">
+      <h2>Servi&ccedil;os</h2>
+      <p class="lead">Atendemos empresas, escolas, eventos e fam&iacute;lias em Ouro Fino/MG e regi&atilde;o com solu&ccedil;&otilde;es de transporte sob medida.</p>
+      <div class="services-grid">
+        <article class="card service-card">
+          <span class="icon">&#128652;</span>
           <div>
-            <h3>Fretamento Contínuo</h3>
-            <p>Rotas diárias para colaboradores e estudantes, com planejamento de horários e acompanhamento.</p>
+            <h3>Fretamento Cont&iacute;nuo</h3>
+            <p>Rotas di&aacute;rias para colaboradores ou estudantes com controle de assentos, check-list e suporte em tempo real.</p>
           </div>
-        </div>
-        <div class="card service">
-          <div class="icon">✈️</div>
+        </article>
+        <article class="card service-card">
+          <span class="icon">&#9992;&#65039;</span>
           <div>
             <h3>Traslados</h3>
-            <p>Transfer para aeroportos e rodoviárias (Guarulhos/Viracopos/Confins) com pontualidade e conforto.</p>
+            <p>Transfer para aeroportos e rodovi&aacute;rias (Confins, Guarulhos, Viracopos) com monitoramento de voos e flexibilidade de hor&aacute;rio.</p>
           </div>
-        </div>
-        <div class="card service">
-          <div class="icon">🗺️</div>
+        </article>
+        <article class="card service-card">
+          <span class="icon">&#127758;</span>
           <div>
             <h3>Turismo Regional</h3>
-            <p>Passeios para cachoeiras, roteiros gastronômicos e religiosos no Sul de Minas e Circuito das Malhas.</p>
+            <p>Passeios para cachoeiras, circuitos gastron&ocirc;micos, religiosos e compras no Sul de Minas e regi&atilde;o do Circuito das Malhas.</p>
           </div>
-        </div>
-        <div class="card service">
-          <div class="icon">📦</div>
+        </article>
+        <article class="card service-card">
+          <span class="icon">&#128230;</span>
           <div>
-            <h3>Encomendas Rápidas</h3>
-            <p>Entrega de pequenos volumes com coleta agendada e rastreio básico por mensagem.</p>
+            <h3>Encomendas R&aacute;pidas</h3>
+            <p>Entrega de pequenos volumes com coleta agendada, confer&ecirc;ncia e confirma&ccedil;&atilde;o de recebimento via mensagem.</p>
           </div>
-        </div>
-        <div class="card service">
-          <div class="icon">👨‍👩‍👧‍👦</div>
+        </article>
+        <article class="card service-card">
+          <span class="icon">&#128197;</span>
           <div>
             <h3>Viagens Particulares</h3>
-            <p>Bate‑volta ou pernoite para eventos, consultas e compromissos. Orçamento sem burocracia.</p>
+            <p>Deslocamentos para eventos, sa&uacute;de ou lazer com roteiros personalizados e disponibilidade para bate-volta ou pernoite.</p>
           </div>
-        </div>
-        <div class="card service">
-          <div class="icon">🧾</div>
+        </article>
+        <article class="card service-card">
+          <span class="icon">&#128221;</span>
           <div>
-            <h3>Contrato & Nota</h3>
-            <p>Atendimento formalizado, emissão de nota quando necessário e recibo em todas as corridas.</p>
+            <h3>Contrato &amp; Nota Fiscal</h3>
+            <p>Documenta&ccedil;&otilde;es completas, contratos formais e emiss&atilde;o de nota fiscal sob demanda para empresas e &oacute;rg&atilde;os.</p>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
-    <!-- FLEET -->
-    <section id="frota" class="section">
+    <section class="section" id="frota">
       <h2>Frota</h2>
-      <p class="muted">Van Renault Master 15 lugares e Kombi Volkswagen climatizada, revisadas e equipadas para viagens com conforto e segurança.</p>
-      <div class="grid fleet-grid">
-        <div class="card fleet-card">
-          <img class="fleet-img" alt="Van Renault Master 15 lugares" src="van.png" loading="lazy">
+      <p class="lead">Ve&iacute;culos climatizados, rastreados e com manuten&ccedil;&atilde;o em dia para garantir conforto e seguran&ccedil;a em cada viagem.</p>
+      <div class="fleet-grid">
+        <article class="card fleet-card">
+          <img src="van.png" alt="Van executiva Renault Master com 15 lugares">
           <strong>Van Renault Master</strong>
-          <span class="muted">Perfeita para grupos médios.</span>
-        </div>
-        <div class="card fleet-card">
-          <img class="fleet-img" alt="Kombi Volkswagen " src="kombi.png" loading="lazy">
+          <span>15 lugares, ar-condicionado digital, poltronas reclin&aacute;veis e amplo bagageiro.</span>
+        </article>
+        <article class="card fleet-card">
+          <img src="kombi.png" alt="Kombi Volkswagen climatizada">
           <strong>Kombi Volkswagen</strong>
-          <span class="muted">Até 15 passageiros com acesso fácil e configuração versátil para viagens curtas.</span>
-        </div>
+          <span>Ideal para at&eacute; 12 passageiros, layout vers&aacute;til e acesso facilitado para grupos menores.</span>
+        </article>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contato" class="section">
+    <section class="section" id="contato">
       <h2>Contato</h2>
-      <p class="muted">Chame no WhatsApp ou ligue. Resposta rápida em horário comercial.</p>
-      <div class="grid col-2">
-        <div class="card contact-card">
-          <div>
-            <div class="pill">📞 Telefones</div>
-            <p><strong>(35) 99753-3679</strong> · <a href="tel:+5535997533679">Ligar</a></p>
+      <p class="contact-lead">Chame no WhatsApp ou ligue. Resposta r&aacute;pida em hor&aacute;rio comercial.</p>
+      <div class="contact-grid">
+        <article class="card contact-card">
+          <span class="info-pill"><span>&#128222;</span> Telefones</span>
+          <div class="phone-line">
+            <strong>(35) 99753-3679</strong>
+            <span class="separator"></span>
+            <a href="tel:+5535997533679">Ligar agora</a>
           </div>
-          <div class="pill">📍 Base em Ouro Fino/MG</div>
-          <p class="muted">Atendimento nas cidades do entorno: Inconfidentes, Borda da Mata, Jacutinga, Albertina, Pouso Alegre e mais.</p>
-        </div>
-        <div class="card">
+          <span class="info-pill"><span>&#127968;</span> Base em Ouro Fino/MG</span>
+          <p class="coverage">Atendimento nas cidades vizinhas: Inconfidentes, Borda da Mata, Jacutinga, Albertina, Pouso Alegre e regi&atilde;o.</p>
+        </article>
+        <article class="card contact-card">
+          <span class="info-pill"><span>&#128232;</span> Solicitar or&ccedil;amento</span>
           <form id="orcamento" onsubmit="return enviarOrcamento(event)">
-            <div class="pill">📝 Solicitar orçamento rápido</div>
-            <div style="display:grid; gap:12px; margin-top:12px">
-              <input class="inp" name="nome" placeholder="Seu nome" required>
-              <input class="inp" name="origem" placeholder="Origem (ex.: Ouro Fino)">
-              <input class="inp" name="destino" placeholder="Destino (ex.: Confins)">
-              <input class="inp" name="data" type="date" placeholder="Data">
-              <input class="inp" name="pessoas" type="number" min="1" placeholder="Qtde de pessoas">
-              <button class="btn primary" type="submit">Gerar mensagem no WhatsApp</button>
-            </div>
+            <input class="input" name="nome" placeholder="Seu nome" required />
+            <input class="input" name="origem" placeholder="Origem (ex.: Ouro Fino)" />
+            <input class="input" name="destino" placeholder="Destino (ex.: Confins)" />
+            <input class="input" name="data" type="date" />
+            <input class="input" name="pessoas" type="number" min="1" placeholder="Quantidade de pessoas" />
+            <button class="btn primary" type="submit">Enviar pelo WhatsApp</button>
           </form>
-        </div>
+        </article>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
-      <span>© <span id="year"></span> Maranata Turismo. Todos os direitos reservados.</span>
-      <span class="muted">Transporte legal, seguro e responsável.</span>
-      <span class="muted" style="flex-basis:100%;">CNPJ 17.332.521/0001-49</span>
+    <div class="container">
+      <span>&copy; <span id="year"></span> Maranata Turismo.</span>
+      <span>Transporte seguro, legal e respons&aacute;vel.</span>
+      <span>CNPJ 17.332.521/0001-49</span>
     </div>
   </footer>
 
-  <style>
-    /* Inputs minimalistas */
-    .inp{padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.03); color:var(--text)}
-    .inp::placeholder{color:#9aa6bd}
-    .inp:focus{outline:none; border-color: rgba(34,211,238,.6); box-shadow:0 0 0 4px rgba(34,211,238,.15)}
-  </style>
-
   <script>
-    // ano automático no rodapé
-    document.getElementById('year').textContent = new Date().getFullYear()
-
-    // rolagem suave
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id=a.getAttribute('href').slice(1)
-        const el=document.getElementById(id)
-        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}) }
-      })
-    })
-
-    // Gera mensagem do WhatsApp com os dados do formulário
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(ev){
+        var targetId = this.getAttribute('href').slice(1);
+        var el = document.getElementById(targetId);
+        if(el){
+          ev.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
     function enviarOrcamento(ev){
-      ev.preventDefault()
-      const data = Object.fromEntries(new FormData(ev.target))
-      const fone = '5535997533679'
-      const texto = `Olá, sou ${data.nome}. Quero orçamento para ${data.pessoas||'?'} pessoas, de ${data.origem||'minha cidade'} até ${data.destino||'o destino'}, na data ${data.data||'a combinar'}.`
-      const url = `https://wa.me/${fone}?text=${encodeURIComponent(texto)}`
-      window.open(url, '_blank')
-      return false
+      ev.preventDefault();
+      var data = Object.fromEntries(new FormData(ev.target));
+      var texto = "Ol\u00e1, sou "+(data.nome||"?")+". Gostaria de or\u00e7amento para "+(data.pessoas||"?")+" pessoas, saindo de "+(data.origem||"minha cidade")+" rumo a "+(data.destino||"o destino")+" na data "+(data.data||"a combinar")+".";
+      var url = "https://wa.me/5535997533679?text="+encodeURIComponent(texto);
+      window.open(url, "_blank");
+      return false;
     }
   </script>
 </body>
